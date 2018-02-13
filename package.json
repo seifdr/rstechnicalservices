@@ -1,0 +1,30 @@
+{
+  "name": "rstechnical-services",
+  "version": "1.0.0",
+  "description": "Bootstrap 4 WordPress Theme",
+  "main": "gulpfile.js",
+  "author": "Brad Williams",
+  "devDependencies": {
+    "bootstrap": "^4.0.0",
+    "browser-sync": "^2.23.5",
+    "critical": "^0.8.4",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^2.2.0",
+    "gulp-imageoptim": "^1.0.9",
+    "gulp-include": "^1.1.1",
+    "gulp-jshint": "^1.10.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-watch": "^4.2.4",
+    "gulp-zip": "^3.2.0",
+    "jshint-stylish": "^1.0.2",
+    "popper.js": "^1.13.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC"
+}
