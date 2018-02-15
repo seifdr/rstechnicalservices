@@ -113,3 +113,21 @@ require get_template_directory() . '/inc/customizer.php';
  * Bootstrap Walker.
  */
 require get_template_directory() . '/inc/bootstrap-walker.php';
+
+function look( $value, $margin = NULL ){
+	
+	
+
+	if( $margin ){
+		echo "<div style='margin-left: 200px'>";
+	}
+
+	echo "<pre>";
+	print_r( $value );
+	echo "</pre>";
+
+	if( $margin ){
+		echo "</div>";
+	}
+
+}

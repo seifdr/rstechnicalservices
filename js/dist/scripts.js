@@ -6343,7 +6343,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 jQuery(document).ready(function($){
 // Add your custom jQuery here
-    alert('hello');
+    // alert('hello');
 
 });
 
