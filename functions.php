@@ -114,10 +114,13 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/bootstrap-walker.php';
 
+/**
+ * Boostrap 4 component module view additions.
+ */
+require get_template_directory() . '/inc/modules-views.php';
+
 function look( $value, $margin = NULL ){
 	
-	
-
 	if( $margin ){
 		echo "<div style='margin-left: 200px'>";
 	}
