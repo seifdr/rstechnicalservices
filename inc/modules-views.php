@@ -189,8 +189,7 @@ class ModuleCards extends ModuleViews {
         if( !isset( $this->options['per_row'] ) ){
             $this->colCnt = 3;
         } else {
-            //translated user input row count into bootstrap cols, ie 4 per row is 3-col
-            $this->colCnt = 12 / $this->options['per_row'];
+            $this->colCnt = $this->options['per_row'];
         }
     }
 
@@ -203,7 +202,7 @@ class ModuleCards extends ModuleViews {
                 $img = $this->data[$i]['image'];
                 $btn = $this->data[$i]['button'];
         ?>
-        <div class="col-xs-12 col-sm-<?php echo $this->colCnt; ?>">
+        <div class="col-xs-12 col-sm-<?php echo 12 / $this->colCnt; ?>">
             <div class="card <?php 
                     if( $this->options['outline'] != '1' ){ echo ' no-outline '; } 
                     if( $this->options['alignment'] == 'center' ){ echo ' text-center '; } ?>
