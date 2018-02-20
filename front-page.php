@@ -40,10 +40,11 @@ get_header(); ?>
 
               //look( $mr );
 
-              // look( $mr['callout'] );
+              // look( $mr['options'] );
 
-              $layout_name  = $mr['acf_fc_layout'];
-              $layout_id    = $layout_name . $modules_counter;
+              $layout_name    = $mr['acf_fc_layout'];
+              $layout_id      = $layout_name . $modules_counter;
+              $layout_options = ( isset( $mr['options'] ) )? $mr['options'] : NULL ;
 
               $moduleKey = array(
                 "callouts"    => "ModuleCallouts",
@@ -51,7 +52,7 @@ get_header(); ?>
                 "cards"       => "ModuleCards"
               );
 
-              $hp_mod = new $moduleKey[$layout_name]( $mr['module_content'], $layout_id, 'test' );
+              $hp_mod = new $moduleKey[$layout_name]( $mr['module_content'], $layout_options, $layout_id, 'test' );
               $hp_mod->getDisplay();
 
               // module types - right now 
