@@ -115,6 +115,10 @@ class ModuleFeaturette extends ModuleViews {
     protected function display(){
 
         for ($i=0; $i < $this->dataCount ; $i++) {     
+            //d will be shorthand for the data
+            $d =& $this->data[$i];
+            
+            $img =& $this->data[$i]['image'][''];
 
             if( $i == 0 ){
                 echo "<hr class='featurette-divider'>";
@@ -123,22 +127,23 @@ class ModuleFeaturette extends ModuleViews {
             ?>
                 
                 <div class="row featurette">
-                    <div class="col-md-7 order-md-2">
-                        <h2 class="featurette-heading">Field Service <!-- <span class="text-muted">See for yourself.</span> --></h2>
-                        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                    <div class="col-md-7 <?php if( $d['image_placement'] == 'right' ){ echo 'order-md-2'; }  ?>">
+                        <h2 class="featurette-heading"><?php echo $d['text']['title']; ?><!-- <span class="text-muted">See for yourself.</span> --></h2>
+                        <p class="lead"><?php echo $d['text']['blurb']; ?></p>
                     </div>
-                    <div class="col-md-5 order-md-1">
-                        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+                    <div class="col-md-5 <?php if( $d['image_placement'] == 'right' ){ echo 'order-md-1'; }  ?>">
+                        <img class="featurette-image img-fluid mx-auto" src="<?php echo $img['sizes']['medium_large']; ?>" alt="<?php echo $img['alt']; ?>" title="<?php echo $img['title']; ?>"  ?>
                     </div>
                 </div>
                 <hr class='featurette-divider'>
 
             <?php
 
-           
+            //look( $img );
+
         } // end for loop
 
-        look( $this->data );
+        // look( $this->data );
     }
 }
 
