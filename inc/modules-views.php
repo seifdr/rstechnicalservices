@@ -49,8 +49,6 @@ class ModuleViews {
 class ModuleCarousel extends ModuleViews {
     public $type = 'carousel';
 
-
-
     protected function display(){
     
         ?>
@@ -138,12 +136,7 @@ class ModuleFeaturette extends ModuleViews {
                 <hr class='featurette-divider'>
 
             <?php
-
-            //look( $img );
-
         } // end for loop
-
-        // look( $this->data );
     }
 }
 
@@ -157,7 +150,6 @@ class ModuleCallouts extends ModuleViews {
 
         $this->colCnt = 12 / $this->dataCount;
     }
-
 
     protected function display(){
         echo "<div class='row'>";
@@ -177,11 +169,62 @@ class ModuleCallouts extends ModuleViews {
 }
 
 class ModuleCards extends ModuleViews {
-    public $type = 'cards';
+    public  $type = 'cards';
+    private $colCnt = 0;
+    private $rowCnt = 0;
+    
+    function __construct( $data, $module_id = "default", $module_class="default" ) {
+        //keep parent contructor functionality / dont override it
+        parent::__construct( $data, $module_id = "default", $module_class="default" );
+
+        $this->calcCardRowsAndCols();
+       
+    }
+
+    protected function calcCardRowsAndCols(){
+
+        if( $this->dataCount > 3 ){
+            $this->colCnt = 4;
+            $this->rowCnt = $this->dataCount / $this->colCnt;
+        } else {
+            $this->colCnt = 12 / $this->dataCount;
+        }
+    }
 
     protected function display(){
         ?>
-            <p>Hello there. I'm a cards module.</p>
+            <div class="row" >
         <?php
+            $cardCounter = 0;
+            for ($i=0; $i < $this->dataCount ; $i++) { 
+                $img = $this->data[$i]['Images'];
+                $btn = $this->data[$i]['button'];
+        ?>
+        <div class="col-xs-12 col-sm-<?php echo $this->colCnt; ?>">
+            <div class="card">
+                <img class="card-img-top" src="<?php echo $img['sizes']['medium']; ?>" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $this->data[$i]['title']; ?></h5>
+                    <p class="card-text"><?php echo $this->data[$i]['blurb']; ?></p>
+                    <a href="<?php echo $btn['button_link']; ?>" class="btn btn-primary"><?php echo $btn['button_text']; ?></a>
+                </div>
+            </div>
+        </div> <!-- close col -->
+        <?php
+                $cardCounter++;
+
+                if( (($cardCounter % 3) == 0 ) ){
+                    ?>
+                        </div> <!-- close row -->
+                        <div class="row">
+                    <?php
+                }
+
+            } // close for 
+        ?>
+            </div> <!-- close row -->
+        <?php
+
+        //look( $this->data );
     }
 }
