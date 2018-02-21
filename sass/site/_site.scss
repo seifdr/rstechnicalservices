@@ -43,7 +43,8 @@ body {
     padding-bottom: 3rem;
     color: #5a5a5a;
   }
-  
+
+// For the card module 
 
 div.cardRow {
   padding: .5em 0;
@@ -51,4 +52,9 @@ div.cardRow {
 
 div.no-outline {
   border: none; 
+}
+
+div.hp-card-deck div.card-footer {
+  border-top: none;
+  background-color: transparent;
 }

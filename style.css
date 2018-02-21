@@ -6710,6 +6710,10 @@ div.cardRow {
 div.no-outline {
   border: none; }
 
+div.hp-card-deck div.card-footer {
+  border-top: none;
+  background-color: transparent; }
+
 /*--------------------------------------------------------------
 # Media
 --------------------------------------------------------------*/

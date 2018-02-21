@@ -195,35 +195,36 @@ class ModuleCards extends ModuleViews {
 
     protected function display(){
         ?>
-            <div class="row cardRow" >
+            <div class="card-deck hp-card-deck">
+                <div class="row">
         <?php
             $cardCounter = 0;
             for ($i=0; $i < $this->dataCount ; $i++) { 
                 $img = $this->data[$i]['image'];
                 $btn = $this->data[$i]['button'];
         ?>
-        <div class="col-xs-12 col-sm-<?php echo 12 / $this->colCnt; ?>">
+    
             <div class="card <?php 
                     if( $this->options['outline'] != '1' ){ echo ' no-outline '; } 
-                    if( $this->options['alignment'] == 'center' ){ echo ' text-center '; } ?>
-            ?>">
+                    if( $this->options['alignment'] == 'center' ){ echo ' text-center '; }
+            ?>" style="" >
                 <?php if( isset( $img['sizes']['medium'] ) ){ ?>
                     <img class="card-img-top" src="<?php echo $img['sizes']['medium']; ?>" alt="<?php echo $img['alt']; ?>" title="<?php echo $img['title']; ?>" >
                 <?php } ?>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $this->data[$i]['title']; ?></h5>
                     <p class="card-text"><?php echo $this->data[$i]['blurb']; ?></p>
-                    <a href="<?php echo $btn['button_link']; ?>" class="btn btn-primary"><?php echo $btn['button_text']; ?></a>
                 </div>
+                <div class="card-footer"><a href="<?php echo $btn['button_link']; ?>" class="btn btn-primary"><?php echo $btn['button_text']; ?></a></div>   
             </div>
-        </div> <!-- close col -->
+
         <?php
                 $cardCounter++;
 
                 if( (( $cardCounter % $this->colCnt ) == 0 ) ){
                     ?>
                         </div> <!-- close row -->
-                        <div class="row cardRow">
+                        <div class="row">
                     <?php
                 }
 
@@ -232,9 +233,11 @@ class ModuleCards extends ModuleViews {
             } // close for 
         ?>
             </div> <!-- close row -->
+
+            </div> <!-- close card deck -->
         <?php
 
-        look( $this->options );
+        // look( $this->options );
         // look( $this->data );
     }
 }

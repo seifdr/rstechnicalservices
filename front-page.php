@@ -78,7 +78,6 @@ get_header(); ?>
         <!-- PRODUCT CATGORIES -->
         <?php // get_template_part( 'template-parts/homepage/cards' ); ?>
 
-
       </div><!-- /.container -->
 	
 	<?php
