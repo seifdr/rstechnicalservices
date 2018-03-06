@@ -1,4 +1,29 @@
 
+// Break Points Up
+// @include media-breakpoint-up(xs) { ... }
+// @include media-breakpoint-up(sm) { ... }
+// @include media-breakpoint-up(md) { ... }
+// @include media-breakpoint-up(lg) { ... }
+// @include media-breakpoint-up(xl) { ... }
+
+
+// Break Points Down
+// @include media-breakpoint-down(xs) { ... }
+// @include media-breakpoint-down(sm) { ... }
+// @include media-breakpoint-down(md) { ... }
+// @include media-breakpoint-down(lg) { ... }
+
+// Break Point Specifics 
+// @include media-breakpoint-only(xs) { ... }
+// @include media-breakpoint-only(sm) { ... }
+// @include media-breakpoint-only(md) { ... }
+// @include media-breakpoint-only(lg) { ... }
+// @include media-breakpoint-only(xl) { ... }
+
+// Break Point Range
+// @include media-breakpoint-between(md, xl) { ... }
+
+
 /*--------------------------------------------------------------
 ## Layouts
 --------------------------------------------------------------*/
@@ -42,7 +67,14 @@ body {
     padding-top: 3rem;
     padding-bottom: 3rem;
     color: #5a5a5a;
+}
+
+@media (min-width: 1200px) {
+  .container{
+      max-width: 1440px;
+      border: 1px solid red;
   }
+}
 
 // For the card module 
 
@@ -54,7 +86,47 @@ div.no-outline {
   border: none; 
 }
 
-div.hp-card-deck div.card-footer {
-  border-top: none;
-  background-color: transparent;
+
+div.hp-card-deck {
+
+  justify-content: space-evenly;
+
+  div.card {
+    margin-bottom: 2em;
+  }
+
+  div.fourPerRow {
+    // max-width: 20%;
+  }
+
+  div.card-footer {
+    border-top: none;
+    background-color: transparent;
+  }
+
+
+
+  @include media-breakpoint-between(sm, xl) {
+    div.threePerRow {
+      flex: 0 0 30%;
+      border: 1px solid blue;
+    }
+
+    div.fourPerRow {
+      box-sizing: border-box;
+      flex: 0 0 22.5%;
+      border: 1px solid red;
+    }
+
+    div.sixPerRow {
+      flex: 0 0 16.6%;
+    }
+
+  }
+
+
+
 }
+
+
+

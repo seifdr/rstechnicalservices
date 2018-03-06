@@ -34,7 +34,7 @@ get_header(); ?>
 
 
             foreach ($modules as $module_array ) {
-              
+
               $mr = &$module_array;
               $modules_counter++;
 
@@ -46,10 +46,13 @@ get_header(); ?>
               $layout_id      = $layout_name . $modules_counter;
               $layout_options = ( isset( $mr['options'] ) )? $mr['options'] : NULL ;
 
+              look( $layout_options );
+
               $moduleKey = array(
                 "callouts"    => "ModuleCallouts",
                 "featurettes" => "ModuleFeaturette",
-                "cards"       => "ModuleCards"
+                "cards"       => "ModuleCards",
+                "buttons"     => "ModuleButtons"
               );
 
               $hp_mod = new $moduleKey[$layout_name]( $mr['module_content'], $layout_options, $layout_id, 'test' );
@@ -81,9 +84,6 @@ get_header(); ?>
       </div><!-- /.container -->
 	
 	<?php
-
-$imgC = get_field('image_carousel');
-look( $imgC );
 
 get_sidebar();
 get_footer();

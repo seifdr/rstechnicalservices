@@ -161,7 +161,7 @@ class ModuleCallouts extends ModuleViews {
                 <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
                 <h2><?php echo $co['title']; ?></h2>
                 <p><?php echo $co['brief_blurb']; ?></p>
-                <p><a class="btn btn-secondary" href="<?php echo $co['button']['page_link']; ?>" role="button"><?php echo $co['button']['button_label']; ?></a></p>
+                <p><a class="btn btn-primary" href="<?php echo $co['button']['page_link']; ?>" role="button"><?php echo $co['button']['button_label']; ?></a></p>
             </div><!-- /.col-lg-4 -->      
         <?php                
             } //end foreach
@@ -179,9 +179,8 @@ class ModuleCards extends ModuleViews {
     function __construct( $data, $options, $module_id = "default", $module_class="default" ) {
         //keep parent contructor functionality / dont override it
         parent::__construct( $data, $options, $module_id = "default", $module_class="default" );
-
         $this->calcCardRowsAndCols();
-       
+        // look( $data );
     }
 
     protected function calcCardRowsAndCols(){
@@ -196,7 +195,6 @@ class ModuleCards extends ModuleViews {
     protected function display(){
         ?>
             <div class="card-deck hp-card-deck">
-                <div class="row">
         <?php
             $cardCounter = 0;
             for ($i=0; $i < $this->dataCount ; $i++) { 
@@ -207,9 +205,23 @@ class ModuleCards extends ModuleViews {
             <div class="card <?php 
                     if( $this->options['outline'] != '1' ){ echo ' no-outline '; } 
                     if( $this->options['alignment'] == 'center' ){ echo ' text-center '; }
+                    if( $this->options['per_row'] == '4' ){
+                        echo 'fourPerRow';
+                    } elseif ( $this->options['per_row'] == '3' ){
+                        echo 'threePerRow';
+                    } else {
+                        echo 'sixPerRow';
+                    }
             ?>" style="" >
                 <?php if( isset( $img['sizes']['medium'] ) ){ ?>
-                    <img class="card-img-top" src="<?php echo $img['sizes']['medium']; ?>" alt="<?php echo $img['alt']; ?>" title="<?php echo $img['title']; ?>" >
+                    <img class="card-img-top" src="<?php echo $img['sizes']['medium']; ?>"
+                         <?php if( isset( $img['alt'] ) ){ ?> 
+                            alt="<?php echo $img['alt']; ?>"
+                        <?php } ?>
+                        <?php if( isset( $img['title'] ) ){ ?> 
+                         title="<?php echo $img['title']; ?>" 
+                        <?php } ?>
+                    >
                 <?php } ?>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $this->data[$i]['title']; ?></h5>
@@ -219,25 +231,33 @@ class ModuleCards extends ModuleViews {
             </div>
 
         <?php
-                $cardCounter++;
-
-                if( (( $cardCounter % $this->colCnt ) == 0 ) ){
-                    ?>
-                        </div> <!-- close row -->
-                        <div class="row">
-                    <?php
-                }
-
-                //look( $this->data[$i] );
-
             } // close for 
         ?>
-            </div> <!-- close row -->
-
             </div> <!-- close card deck -->
         <?php
 
-        // look( $this->options );
+        //look( $this->options );
         // look( $this->data );
+    }
+}
+
+class ModuleButtons extends ModuleViews {
+    public $type = 'buttonRow';
+    private $colNum = 12;
+
+    protected function display(){
+        if( $this->dataCount > 0 ){
+
+            $this->colNum = 12 / $this->dataCount; 
+
+            echo '<div class="row" >';
+
+            for ($i=0; $i < $this->dataCount; $i++) { 
+                $buttonData = $this->data[$i]['button_link'];  
+                echo '<div class="col-4 text-center mb-4"><a href="'. $buttonData['url'] .'" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">'. $buttonData['title'] .'</a></div>';
+            }   
+
+            echo '</div>';
+        }   
     }
 }
