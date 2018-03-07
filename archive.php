@@ -11,7 +11,7 @@ get_header(); ?>
 
 	<div class="container marketing">
 				<?php
-				if ( have_posts() ) : ?>
+				if ( have_posts() ) { ?>
 
 					<header class="page-header">
 						<?php
@@ -82,13 +82,18 @@ get_header(); ?>
 					$hp_mod->getDisplay();
 
 
-					the_posts_navigation();
+					// the_posts_navigation();
 
-				else :
+					if( function_exists("fellowtuts_wpbs_pagination") ){
+						fellowtuts_wpbs_pagination();
+						//fellowtuts_wpbs_pagination($the_query->max_num_pages);
+					}
+
+				} else { // else from if( have_posts()  )
 
 					get_template_part( 'template-parts/content', 'none' );
 
-				endif; ?>
+				} // close if( have_posts() ) ?> 
 
 	</div> <!-- Close container marketing -->
 

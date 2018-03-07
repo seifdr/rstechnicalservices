@@ -115,6 +115,11 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/bootstrap-walker.php';
 
 /**
+ * Bootstrap Walker.
+ */
+require get_template_directory() . '/inc/bootstrap-paginate.php';
+
+/**
  * Boostrap 4 component module view additions.
  */
 require get_template_directory() . '/inc/modules-views.php';
