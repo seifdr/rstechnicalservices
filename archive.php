@@ -31,7 +31,6 @@ get_header(); ?>
 						
 						//assemble data package from post for 
 						if ( has_post_thumbnail() ){
-
 							$thumbArr 	= wp_get_attachment_image_src( get_post_thumbnail_id() );
 							$mediumArr 	= wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
 							// $imgTitle	= get_post_meta( get_post_thumbnail_id(), '_wp_attachment_image_alt', true)
@@ -50,8 +49,9 @@ get_header(); ?>
 										'medium-height' => $mediumArr[2],
 									)
 								),
-								'title' => 'Hello there',
-								'blurb' => 'I am a blurb',
+								'title' => get_the_title(),
+								'blurb' => '',
+								'linkTo' => esc_url( get_permalink() ),
 								'button' => array(
 									'button_text' => 'Click Here',
 									'button_link' => '//localhost:3000/rstechnicalservices/2016/04/07/hello-2/'
@@ -66,26 +66,6 @@ get_header(); ?>
 		
 						}
 
-				
-
-
-						/*
-						 * Include the Post-Format-specific template for the content.
-						 * If you want to override this in a child theme, then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-						//get_template_part( 'template-parts/content', get_post_format() );
-						// echo "hello";
-						
-						// $mr = array(
-						// 	array(
-
-						// 	)
-						// );
-
-					// 	$hp_mod = new ModuleCards( $mr['module_content'], NULL, '8' 'test' );
-					// 	$hp_mod->getDisplay();
-
 					endwhile;
 
 					// look( $productDataPackage );
@@ -93,7 +73,9 @@ get_header(); ?>
 					$layout_options = [
 						'per_row' => 6,
 						'alignment' => 'center',
-						'outline' => 0
+						'outline' => 0,
+						'cardLink' => 1, 
+						'cardButton' => 0
 					];
 
 					$hp_mod = new ModuleCards( $productDataPackage, $layout_options, NULL, 'test' );

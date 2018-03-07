@@ -6706,8 +6706,7 @@ body {
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1440px;
-    border: 1px solid red; } }
+    max-width: 1440px; } }
 
 div.cardRow {
   padding: .5em 0; }
@@ -6716,24 +6715,29 @@ div.no-outline {
   border: none; }
 
 div.hp-card-deck {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -ms-flex-pack: space-evenly;
       justify-content: space-evenly; }
-  div.hp-card-deck div.card {
+  div.hp-card-deck .card {
     margin-bottom: 2em; }
-  div.hp-card-deck div.card-footer {
+  div.hp-card-deck .sixPerRow {
+    text-align: center; }
+    div.hp-card-deck .sixPerRow img.card-img-top {
+      max-width: 150px;
+      margin: 0 auto; }
+  div.hp-card-deck .card-footer {
     border-top: none;
     background-color: transparent; }
   @media (min-width: 576px) {
-    div.hp-card-deck div.threePerRow {
+    div.hp-card-deck .threePerRow {
       -ms-flex: 0 0 30%;
-          flex: 0 0 30%;
-      border: 1px solid blue; }
-    div.hp-card-deck div.fourPerRow {
+          flex: 0 0 30%; }
+    div.hp-card-deck .fourPerRow {
       box-sizing: border-box;
       -ms-flex: 0 0 22.5%;
-          flex: 0 0 22.5%;
-      border: 1px solid red; }
-    div.hp-card-deck div.sixPerRow {
+          flex: 0 0 22.5%; }
+    div.hp-card-deck .sixPerRow {
       -ms-flex: 0 0 16.6%;
           flex: 0 0 16.6%; } }
 

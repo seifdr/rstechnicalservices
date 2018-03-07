@@ -175,11 +175,13 @@ class ModuleCards extends ModuleViews {
     public  $type = 'cards';
     private $colCnt = 0;
     private $rowCnt = 0;
+    private $cardClass;
     
     function __construct( $data, $options, $module_id = "default", $module_class="default" ) {
         //keep parent contructor functionality / dont override it
         parent::__construct( $data, $options, $module_id = "default", $module_class="default" );
         $this->calcCardRowsAndCols();
+        $this->makeCardClass();
         // look( $data );
     }
 
@@ -192,7 +194,32 @@ class ModuleCards extends ModuleViews {
         }
     }
 
-    protected function display(){
+    private function makeCardClass(){
+        $ops = &$this->options;
+     
+        $classTxt = ' card ';
+
+        if( $ops['outline'] != '1' ){
+            $classTxt .= ' no-outline ';
+        }
+
+        if( $ops['alignment'] == 'center' ){
+            $classTxt .= ' text-center ';
+        }
+
+        if( $ops['per_row'] == '4' ){
+            $classTxt .= ' fourPerRow ';
+        } elseif ( $ops['per_row'] ==  '3' ){
+            $classTxt .= ' threePerRow ';
+        } else {
+            $classTxt .= 'sixPerRow ';
+        }
+
+        $this->cardClass = $classTxt;
+
+    }
+
+    protected function display(){    
         ?>
             <div class="card-deck hp-card-deck">
         <?php
@@ -200,19 +227,15 @@ class ModuleCards extends ModuleViews {
             for ($i=0; $i < $this->dataCount ; $i++) { 
                 $img = $this->data[$i]['image'];
                 $btn = $this->data[$i]['button'];
+
+                if( $this->options['cardLink'] ){ 
+                    echo '<a href="';
+                        echo ( isset( $this->data[$i]['linkTo'] ) && !empty( $this->data[$i]['linkTo'] ) )? $this->data[$i]['linkTo'] : "#";
+                    echo '" class="'. $this->cardClass .'">';
+                } else {
+                    echo '<div class="'. $this->cardClass .'">';
+                }
         ?>
-    
-            <div class="card <?php 
-                    if( $this->options['outline'] != '1' ){ echo ' no-outline '; } 
-                    if( $this->options['alignment'] == 'center' ){ echo ' text-center '; }
-                    if( $this->options['per_row'] == '4' ){
-                        echo 'fourPerRow';
-                    } elseif ( $this->options['per_row'] == '3' ){
-                        echo 'threePerRow';
-                    } else {
-                        echo 'sixPerRow';
-                    }
-            ?>" style="" >
                 <?php if( isset( $img['sizes']['medium'] ) ){ ?>
                     <img class="card-img-top" src="<?php echo $img['sizes']['medium']; ?>"
                          <?php if( isset( $img['alt'] ) ){ ?> 
@@ -225,11 +248,12 @@ class ModuleCards extends ModuleViews {
                 <?php } ?>
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $this->data[$i]['title']; ?></h5>
-                    <p class="card-text"><?php echo $this->data[$i]['blurb']; ?></p>
+                    <?php echo ( !empty( $this->data[$i]['blurb'] ) )? '<p class="card-text">'. $this->data[$i]['blurb'] .'</p>' : ''; ?> 
                 </div>
+                <?php if( $this->options['cardButton'] == '1' ){ ?>
                 <div class="card-footer"><a href="<?php echo $btn['button_link']; ?>" class="btn btn-primary"><?php echo $btn['button_text']; ?></a></div>   
-            </div>
-
+                <?php } ?>
+            </a>
         <?php
             } // close for 
         ?>
