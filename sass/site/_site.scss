@@ -81,11 +81,6 @@ div.cardRow {
   padding: .5em 0;
 }
 
-div.no-outline {
-  border: none; 
-}
-
-
 div.hp-card-deck {
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -93,9 +88,12 @@ div.hp-card-deck {
   a {
 
   }
-
   .card {
     margin-bottom: 2em;
+  }
+
+  .no-outline {
+    border: none; 
   }
 
   .fourPerRow {
