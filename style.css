@@ -6724,6 +6724,7 @@ div.hp-card-deck {
     text-align: center; }
     div.hp-card-deck .sixPerRow img.card-img-top {
       max-width: 150px;
+      height: 150px;
       margin: 0 auto; }
   div.hp-card-deck .card-footer {
     border-top: none;

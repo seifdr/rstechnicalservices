@@ -197,7 +197,7 @@ class ModuleCards extends ModuleViews {
     private function makeCardClass(){
         $ops = &$this->options;
      
-        $classTxt = ' card ';
+        $classTxt = ' card justify-content-center ';
 
         if( $ops['outline'] != '1' ){
             $classTxt .= ' no-outline ';
