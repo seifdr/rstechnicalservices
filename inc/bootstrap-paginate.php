@@ -1,5 +1,8 @@
 <?php 
 
+//orginal code from http://fellowtuts.com/twitter-bootstrap/wordpress-pagination-bootstrap-4-style/
+// modified as needed
+
 function fellowtuts_wpbs_pagination($pages = '', $range = 2) 
 {  
 	$showitems = ($range * 2) + 1;  

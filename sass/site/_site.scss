@@ -27,7 +27,7 @@
 /*--------------------------------------------------------------
 ## Layouts
 --------------------------------------------------------------*/
-@import "layout/content-sidebar";
+@import "layout/content-sidebar"; 
 
 /*--------------------------------------------------------------
 ## Comments
@@ -82,7 +82,6 @@ div.cardRow {
 }
 
 div.hp-card-deck {
-  // flex-wrap: nowrap;
   justify-content: space-evenly;
 
   a {

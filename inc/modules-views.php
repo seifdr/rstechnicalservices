@@ -211,7 +211,7 @@ class ModuleCards extends ModuleViews {
             $classTxt .= ' fourPerRow ';
         } elseif ( $ops['per_row'] ==  '3' ){
             $classTxt .= ' threePerRow ';
-        } else {
+        } elseif ( $ops['per_row'] ==  '6' ) {
             $classTxt .= 'sixPerRow ';
         }
 
@@ -225,11 +225,6 @@ class ModuleCards extends ModuleViews {
         <?php
             $cardCounter = 0;
             for ($i=0; $i < $this->dataCount ; $i++) { 
-                $img = $this->data[$i]['image'];
-                
-                if( $this->data[$i]['cardButton'] == '1' ){
-                    $btn = $this->data[$i]['button'];
-                }
             
                 if( isset( $this->options['cardLink'] ) && $this->options['cardLink'] ){ 
                     echo '<a href="';
@@ -238,22 +233,46 @@ class ModuleCards extends ModuleViews {
                 } else {
                     echo '<div class="'. $this->cardClass .'">';
                 }
+
+                if( isset( $this->data[$i]['cardHeader'] ) ){
         ?>
-                <?php if( isset( $img['sizes']['medium'] ) ){ ?>
-                    <img class="card-img-top" src="<?php echo $img['sizes']['medium']; ?>"
-                         <?php if( isset( $img['alt'] ) ){ ?> 
-                            alt="<?php echo $img['alt']; ?>"
-                        <?php } ?>
-                        <?php if( isset( $img['title'] ) ){ ?> 
-                         title="<?php echo $img['title']; ?>" 
-                        <?php } ?>
-                    >
-                <?php } ?>
+                <!-- Card Header -->
+                <div class="card-header">
+                    <?php echo $this->data[$i]['cardHeader']; ?>
+                </div>
+                <!-- End Card Header -->
+        <?php 
+                } // end if( isset( $this->data[$i]['cardHeader'] ) )
+        ?>
+
+                <!-- Card Image -->
+                <?php 
+
+                if( isset( $this->data[$i]['image'] ) ){
+                
+                    $img = $this->data[$i]['image'];
+
+                        if( isset( $img['sizes']['medium'] ) ){ ?>
+                        <img class="<?php ( isset( $this->data[$i]['cardHeader'] ) )? 'card-img-top': ''; ?>" src="<?php echo $img['sizes']['medium']; ?>"
+                            <?php if( isset( $img['alt'] ) ){ ?> 
+                                alt="<?php echo $img['alt']; ?>"
+                            <?php } ?>
+                            <?php if( isset( $img['title'] ) ){ ?> 
+                            title="<?php echo $img['title']; ?>" 
+                            <?php } ?>
+                        >
+                    <?php } // end - if( isset( $img['sizes']['medium'] ) )
+                } // end - if( isset( $this->data[$i]['image'] ) )
+                ?>
+                <!-- End Card Image  -->
+
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $this->data[$i]['title']; ?></h5>
                     <?php echo ( !empty( $this->data[$i]['blurb'] ) )? '<p class="card-text">'. $this->data[$i]['blurb'] .'</p>' : ''; ?> 
                 </div>
-                <?php if( $this->data[$i]['cardButton'] == '1' ){ ?>
+                <?php if( $this->data[$i]['cardButton'] == '1' ){ 
+                        $btn = $this->data[$i]['button'];
+                ?>
                     <div class="card-footer"><a href="<?php echo $btn['button_link']; ?>" class="btn btn-primary"><?php echo $btn['button_text']; ?></a></div>   
                 <?php } 
         
