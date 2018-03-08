@@ -238,7 +238,10 @@ class ModuleCards extends ModuleViews {
         ?>
                 <!-- Card Header -->
                 <div class="card-header">
-                    <?php echo $this->data[$i]['cardHeader']; ?>
+                    <?php 
+                        if( isset( $this->data[$i]['cardHeaderIcon'] ) ){ echo '<i class="'. $this->data[$i]['cardHeaderIcon'] .'"></i>&nbsp;&nbsp;'; }
+                       echo $this->data[$i]['cardHeader']; 
+                    ?>
                 </div>
                 <!-- End Card Header -->
         <?php 
@@ -269,6 +272,9 @@ class ModuleCards extends ModuleViews {
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $this->data[$i]['title']; ?></h5>
                     <?php echo ( !empty( $this->data[$i]['blurb'] ) )? '<p class="card-text">'. $this->data[$i]['blurb'] .'</p>' : ''; ?> 
+                
+                    <?php echo ( !empty( $this->data[$i]['altContent'] ) )? $this->data[$i]['altContent'] : ''; ?> 
+
                 </div>
                 <?php if( $this->data[$i]['cardButton'] == '1' ){ 
                         $btn = $this->data[$i]['button'];
