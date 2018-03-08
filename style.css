@@ -6712,8 +6712,8 @@ div.cardRow {
   padding: .5em 0; }
 
 div.hp-card-deck {
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   -ms-flex-pack: space-evenly;
       justify-content: space-evenly; }
   div.hp-card-deck .card {
@@ -6734,7 +6734,6 @@ div.hp-card-deck {
       -ms-flex: 0 0 30%;
           flex: 0 0 30%; }
     div.hp-card-deck .fourPerRow {
-      box-sizing: border-box;
       -ms-flex: 0 0 22.5%;
           flex: 0 0 22.5%; }
     div.hp-card-deck .sixPerRow {
