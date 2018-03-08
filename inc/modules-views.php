@@ -226,9 +226,12 @@ class ModuleCards extends ModuleViews {
             $cardCounter = 0;
             for ($i=0; $i < $this->dataCount ; $i++) { 
                 $img = $this->data[$i]['image'];
-                $btn = $this->data[$i]['button'];
-
-                if( $this->options['cardLink'] ){ 
+                
+                if( $this->data[$i]['cardButton'] == '1' ){
+                    $btn = $this->data[$i]['button'];
+                }
+            
+                if( isset( $this->options['cardLink'] ) && $this->options['cardLink'] ){ 
                     echo '<a href="';
                         echo ( isset( $this->data[$i]['linkTo'] ) && !empty( $this->data[$i]['linkTo'] ) )? $this->data[$i]['linkTo'] : "#";
                     echo '" class="'. $this->cardClass .'">';
@@ -250,11 +253,15 @@ class ModuleCards extends ModuleViews {
                     <h5 class="card-title"><?php echo $this->data[$i]['title']; ?></h5>
                     <?php echo ( !empty( $this->data[$i]['blurb'] ) )? '<p class="card-text">'. $this->data[$i]['blurb'] .'</p>' : ''; ?> 
                 </div>
-                <?php if( $this->options['cardButton'] == '1' ){ ?>
-                <div class="card-footer"><a href="<?php echo $btn['button_link']; ?>" class="btn btn-primary"><?php echo $btn['button_text']; ?></a></div>   
-                <?php } ?>
-            </a>
-        <?php
+                <?php if( $this->data[$i]['cardButton'] == '1' ){ ?>
+                    <div class="card-footer"><a href="<?php echo $btn['button_link']; ?>" class="btn btn-primary"><?php echo $btn['button_text']; ?></a></div>   
+                <?php } 
+        
+                if( isset( $this->options['cardLink'] ) && $this->options['cardLink'] ){ 
+                    echo "</a>";
+                } else {
+                    echo "</div>";
+                }
             } // close for 
         ?>
             </div> <!-- close card deck -->

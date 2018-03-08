@@ -52,11 +52,11 @@ get_header(); ?>
 								'title' => get_the_title(),
 								'blurb' => '',
 								'linkTo' => esc_url( get_permalink() ),
-								'button' => array(
-									'button_text' => 'Click Here',
-									'button_link' => '//localhost:3000/rstechnicalservices/2016/04/07/hello-2/'
-								)
-
+								'cardButton' => 0,
+								// 'button' => array(
+								// 	'button_text' => 'Click Here',
+								// 	'button_link' => '//localhost:3000/rstechnicalservices/2016/04/07/hello-2/'
+								// )
 							);
 
 							// if( isset( $imgTitle ) ){ $x['image']['title'] = $imgTitle; } 

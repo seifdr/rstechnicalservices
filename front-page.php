@@ -40,13 +40,13 @@ get_header(); ?>
 
               //look( $mr );
 
-              // look( $mr['options'] );
+              //look( $mr['options'] );
 
               $layout_name    = $mr['acf_fc_layout'];
               $layout_id      = $layout_name . $modules_counter;
               $layout_options = ( isset( $mr['options'] ) )? $mr['options'] : NULL ;
 
-              look( $layout_options );
+              //look( $layout_options );
 
               $moduleKey = array(
                 "callouts"    => "ModuleCallouts",
