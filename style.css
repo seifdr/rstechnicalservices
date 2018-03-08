@@ -6712,8 +6712,6 @@ div.cardRow {
   padding: .5em 0; }
 
 div.hp-card-deck {
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
   -ms-flex-pack: space-evenly;
       justify-content: space-evenly; }
   div.hp-card-deck .card {
