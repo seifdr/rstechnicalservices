@@ -20,7 +20,7 @@ if( function_exists( 'get_field' ) ){
 		$addPhotos = '<div class="row">';
 
 		foreach( $additional_photos as $p ) {
-			$addPhotos .= '<div class="col-4">
+			$addPhotos .= '<div class="col">
 				<a class="relatedImages" href="'. $p['sizes']['large'] .'" data-lightbox="relatedImages">
 					<img src="'. $p['sizes']['thumbnail'] .'" />
 				</a>
@@ -47,10 +47,49 @@ if( function_exists( 'get_field' ) ){
 		];
 	}
 }
+/* End Setup additonal field variables */
 
+
+/* Setup documentation field variables */
+if( function_exists( 'get_field' ) ){
+	$docs = get_field('documentation');
+	
+	if( isset( $docs ) && !empty( $docs ) ){
+		
+		$documentation = '<ul class="list-group list-group-flush" >';
+
+		foreach ( $docs as $d ) { 
+			$title 		= $d['title'];
+			$seoTitle	= $d['attachement']['title'];
+			$url 		= $d['attachement']['url'];
+
+			$documentation .= "<li class='list-group-item'><a target='_blank' href='{$url}' title='{$seoTitle}'>{$title}</a></li>";
+		}
+
+		$documentation .= '</ul>';
+	
+		$documents[0] = array(
+			'title' => '',
+			'altContent' => $documentation,
+			'linkTo' => '',
+			'cardButton' => 0,
+			'cardHeader' 	 => 'Documentation',
+			'cardHeaderIcon' => 'fas fa-book'
+		);
+		
+		$documents_layout_options = [
+			'per_row' => 1,
+			'alignment' => 'center',
+			'outline' => 1,
+			'cardLink' => 0, 
+			'cardButton' => 0,
+		];
+	} // close if( isset( $docs ) && !empty( $docs ) )
+} // close if( function_exists( 'get_field' ) )
+
+/* End documentation field variables */
 
 ?>
-
 
 	<div class="container marketing">		
 		<?php
@@ -73,8 +112,12 @@ if( function_exists( 'get_field' ) ){
 										$hp_mod = new ModuleCards( $add_imgs, $add_imgs_layout_options, NULL, 'test' );
 										$hp_mod->getDisplay();
 									}
+
+									if( !empty( $documentation ) ){
+										$doc_mod = new ModuleCards( $documents, $documents_layout_options, NULL, 'test' );
+										$doc_mod->getDisplay();
+									}
 								?>
-								<p>Product Documentation</p>
 							</section>
 							<section class="col-md-12 col-lg-8 bBlue">
 								<h1><?php the_title(); ?></h1>
@@ -85,6 +128,9 @@ if( function_exists( 'get_field' ) ){
 
 						<!-- For development purposes only -->
 						<div>
+							<?php 
+								
+							?>
 
 						</div>
 						<!-- End for development purposes only -->
