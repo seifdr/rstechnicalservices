@@ -107,6 +107,7 @@ options.sassmin = {
   //imagePath: 'assets/img',
   includePaths: [
     config.nodeDir + '/bootstrap/scss',
+    config.nodeDir + '/font-awesome/scss'
   ]
 };
 
