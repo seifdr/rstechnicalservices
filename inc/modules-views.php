@@ -310,8 +310,12 @@ class ModuleButtons extends ModuleViews {
             echo '<div class="row" >';
 
             for ($i=0; $i < $this->dataCount; $i++) { 
-                $buttonData = $this->data[$i]['button_link'];  
-                echo '<div class="col-4 text-center mb-4"><a href="'. $buttonData['url'] .'" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">'. $buttonData['title'] .'</a></div>';
+                $buttonData = $this->data[0]['button_link'];  
+
+                $btnId    = ( !empty( $buttonData['id'] ) )? $buttonData['id'] : '';
+                $btnClass = ( !empty( $buttonData['class'] ) )? "btn btn-primary btn-lg btn-block " . $buttonData['class'] : 'btn btn-primary btn-lg btn-block';
+
+                echo '<div class="col text-center mb-4"><a id="'. $btnId .'" class="'. $btnClass .' " href="'. $buttonData['url'] .'" role="button" aria-pressed="true">'. $buttonData['title'] .'</a></div>';
             }   
 
             echo '</div>';

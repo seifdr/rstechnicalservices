@@ -106,6 +106,24 @@ if( function_exists( 'get_field' ) && not_blank( get_field('brand_manufacturer' 
 }
 /* End Setup product url variables */
 
+/* Setup RFQ Btn variables */
+$rfqBtn[0] = [
+	'button_link' => [
+		'title'  => 'Add to Quote',
+		'url'	 => '#',
+		'target' => NULL,
+		'id'	 => 'addToQuoteBtn',
+		'class'	 => 'addToQuoteBtn col-4'
+	]
+];
+
+$rfqBtn_layout_options = [
+'per_row' => 4,
+'alignment' => 'center',
+'outline'	=> 1
+];
+/* End RFQ Btn variables */
+
 ?>
 
 	<div class="container marketing">	
@@ -146,19 +164,18 @@ if( function_exists( 'get_field' ) && not_blank( get_field('brand_manufacturer' 
 										echo "<p>{$brandName}</p>";
 									}
 								} ?>
-								<div><?php the_content(); ?></div>
-								<?php 
-									if( not_Blank( $mansProductURL ) ){
-										echo $modMansProductURL;
-									}
-								?>
-								<div>
-									<br/>
+									<div><?php the_content(); ?></div>
 									<?php 
-
-										
+										if( not_Blank( $mansProductURL ) ){
+											echo $modMansProductURL;
+										}
 									?>
-								</div>
+									<div class="mt-2">
+										<?php
+											$btn_mod = new ModuleButtons( $rfqBtn, NULL, NULL, 'test' );
+											$btn_mod->getDisplay();
+										?>
+									</div>
 							</section>
 						</article>
 					<?php

@@ -32,13 +32,12 @@ get_header(); ?>
             $modules = get_field('module_item');
             $modules_counter = 0;
 
-
             foreach ($modules as $module_array ) {
 
               $mr = &$module_array;
               $modules_counter++;
 
-              //look( $mr );
+              // look( $mr );
 
               //look( $mr['options'] );
 
@@ -46,7 +45,7 @@ get_header(); ?>
               $layout_id      = $layout_name . $modules_counter;
               $layout_options = ( isset( $mr['options'] ) )? $mr['options'] : NULL ;
 
-              //look( $layout_options );
+              // look( $layout_options );
 
               $moduleKey = array(
                 "callouts"    => "ModuleCallouts",
