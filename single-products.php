@@ -16,35 +16,39 @@ get_header(); ?>
 if( function_exists( 'get_field' ) ){
 	$additional_photos = get_field('additional_photos');
 
-	$addPhotos = '<div class="row">';
+	if( isset( $additional_photos ) && !empty( $additional_photos ) ){
+		$addPhotos = '<div class="row">';
 
-	foreach( $additional_photos as $p ) {
-		$addPhotos .= '<div class="col-4">
-			<a class="relatedImages" href="'. $p['sizes']['large'] .'" data-lightbox="relatedImages">
-				<img src="'. $p['sizes']['thumbnail'] .'" />
-			</a>
-		</div>';
+		foreach( $additional_photos as $p ) {
+			$addPhotos .= '<div class="col-4">
+				<a class="relatedImages" href="'. $p['sizes']['large'] .'" data-lightbox="relatedImages">
+					<img src="'. $p['sizes']['thumbnail'] .'" />
+				</a>
+			</div>';
+		}
+
+		$addPhotos .= '</div>';
+
+		$add_imgs[0] = array(
+			'title' => '',
+			'altContent' => $addPhotos,
+			'linkTo' => '',
+			'cardButton' => 0,
+			'cardHeader' 	 => 'Addtional Photos',
+			'cardHeaderIcon' => 'fa fa-camera'
+		);
+		
+		$add_imgs_layout_options = [
+			'per_row' => 1,
+			'alignment' => 'center',
+			'outline' => 1,
+			'cardLink' => 0, 
+			'cardButton' => 0,
+		];
 	}
-
-	$addPhotos .= '</div>';
 }
 
-$add_imgs[0] = array(
-	'title' => '',
-	'altContent' => $addPhotos,
-	'linkTo' => '',
-	'cardButton' => 0,
-	'cardHeader' 	 => 'Addtional Photos',
-	'cardHeaderIcon' => 'fa fa-camera'
-);
 
-$add_imgs_layout_options = [
-	'per_row' => 1,
-	'alignment' => 'center',
-	'outline' => 1,
-	'cardLink' => 0, 
-	'cardButton' => 0,
-];
 ?>
 
 
