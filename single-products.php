@@ -99,6 +99,13 @@ if( function_exists( 'get_field' ) && !empty( get_field('brand_manufacturer' ) )
 }
 /* End Setup brand variables */
 
+/* Setup product url variables */
+if( function_exists( 'get_field' ) && not_blank( get_field('brand_manufacturer' ) ) ){
+	$mansProductURL 	= get_field('product_url');
+	$modMansProductURL  = '<a href="'. $mansProductURL .'" title="Visit manfacturer\'s website" >For more information, please visit the manufacturer\'s website</a>';
+}
+/* End Setup product url variables */
+
 ?>
 
 	<div class="container marketing">	
@@ -140,18 +147,20 @@ if( function_exists( 'get_field' ) && !empty( get_field('brand_manufacturer' ) )
 									}
 								} ?>
 								<div><?php the_content(); ?></div>
+								<?php 
+									if( not_Blank( $mansProductURL ) ){
+										echo $modMansProductURL;
+									}
+								?>
+								<div>
+									<br/>
+									<?php 
+
+										
+									?>
+								</div>
 							</section>
 						</article>
-
-						<!-- For development purposes only -->
-						<div>
-							<?php 
-
-								// look( $brand_id );
-							?>
-
-						</div>
-						<!-- End for development purposes only -->
 					<?php
 
 					//get_template_part( 'template-parts/content', get_post_format() );
