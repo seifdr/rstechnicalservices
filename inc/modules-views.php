@@ -269,7 +269,7 @@ class ModuleCards extends ModuleViews {
                 ?>
                 <!-- End Card Image  -->
 
-                <?php if( !empty( $this->data[$i]['title'] ) && !empty( $this->data[$i]['blurb'] ) ){ ?> 
+                <?php if( !empty( $this->data[$i]['title'] ) || !empty( $this->data[$i]['blurb'] ) ){ ?> 
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $this->data[$i]['title']; ?></h5>
                         <?php echo ( !empty( $this->data[$i]['blurb'] ) )? '<p class="card-text">'. $this->data[$i]['blurb'] .'</p>' : ''; ?> 

@@ -115,9 +115,14 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/bootstrap-walker.php';
 
 /**
- * Bootstrap Walker.
+ * Bootstrap Pagination.
  */
 require get_template_directory() . '/inc/bootstrap-paginate.php';
+
+/**
+ * Bootstrap Breadcrumbs.
+ */
+require get_template_directory() . '/inc/bootstrap-breadcrumbs.php';
 
 /**
  * Boostrap 4 component module view additions.
@@ -138,4 +143,12 @@ function look( $value, $margin = NULL ){
 		echo "</div>";
 	}
 
+}
+
+function not_Blank($var){
+	if( isset($var) && !empty($var) ){
+		return TRUE;
+	} else {
+		return FALSE;
+	}
 }

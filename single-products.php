@@ -98,7 +98,7 @@ if( function_exists( 'get_field' ) ){
 					?>
 						<section class="row">
 							<div class="col-12 mt-3 mb-3">
-								[Breadcrumbs Here]
+								<?php custom_breadcrumbs(); ?>
 							</div>
 						</section>
 						<article class="row">
