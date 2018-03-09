@@ -49,7 +49,6 @@ if( function_exists( 'get_field' ) ){
 }
 /* End Setup additonal field variables */
 
-
 /* Setup documentation field variables */
 if( function_exists( 'get_field' ) ){
 	$docs = get_field('documentation');
@@ -89,18 +88,30 @@ if( function_exists( 'get_field' ) ){
 
 /* End documentation field variables */
 
+/* Setup brand variables */
+if( function_exists( 'get_field' ) && !empty( get_field('brand_manufacturer' ) ) ){
+	$brandCheck	 = true;
+	$brand_id 	 = get_field('brand_manufacturer');
+	$brand 		 = get_term( $brand_id );
+	$brandName 	 = $brand->name;
+	$brandURL 	 = get_term_link( $brand_id );
+	$brandAnchor = '<a href="'. $brandURL .'" title="See all '. $brandName .' products">'. $brandName .'</a>';
+}
+/* End Setup brand variables */
+
 ?>
 
-	<div class="container marketing">		
+	<div class="container marketing">	
+		<section class="row">
+			<div class="col-12 mt-4">
+				<?php custom_breadcrumbs(); ?>
+			</div>
+		</section>	
 		<?php
 				while ( have_posts() ){ the_post();
 
 					?>
-						<section class="row">
-							<div class="col-12 mt-3 mb-3">
-								<?php custom_breadcrumbs(); ?>
-							</div>
-						</section>
+
 						<article class="row">
 							<section class="col-md-12 col-lg-4 bRed">
 								<?php 
@@ -121,7 +132,13 @@ if( function_exists( 'get_field' ) ){
 							</section>
 							<section class="col-md-12 col-lg-8 bBlue">
 								<h1><?php the_title(); ?></h1>
-								<p>Brand: [Brand Name Here]</p>
+								<?php if($brandCheck ){ 
+									if( not_Blank( $brandURL ) ){
+										echo "<p>{$brandAnchor}</p>";
+									} else {
+										echo "<p>{$brandName}</p>";
+									}
+								} ?>
 								<div><?php the_content(); ?></div>
 							</section>
 						</article>
@@ -129,7 +146,8 @@ if( function_exists( 'get_field' ) ){
 						<!-- For development purposes only -->
 						<div>
 							<?php 
-								
+
+								// look( $brand_id );
 							?>
 
 						</div>
