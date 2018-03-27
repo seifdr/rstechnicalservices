@@ -10,6 +10,11 @@
 get_header(); ?>
 
 	<div class="container marketing">
+		<section class="row">
+			<div class="col-12 mt-4">
+				<?php custom_breadcrumbs(); ?>
+			</div>
+		</section>
 				<?php
 				if ( have_posts() ) { ?>
 

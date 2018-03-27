@@ -4,7 +4,7 @@
 function custom_breadcrumbs() {
       
     // Settings
-    $separator          = '&gt;';
+    $separator          = '/';
 	// $separator          = '';
     $breadcrums_id      = 'breadcrumb';
     $breadcrums_class   = 'breadcrumb';
@@ -27,7 +27,7 @@ function custom_breadcrumbs() {
           
         if ( is_archive() && !is_tax() && !is_category() ) {
              
-            echo '<li class="breadcrumb-item active">' . post_type_archive_title($prefix, false) . '</li>';
+            echo '<li class="breadcrumb-item active">'. post_type_archive_title( '', false) .'</li>';
              
         } else if ( is_archive() && is_tax() && !is_category() ) {
              
